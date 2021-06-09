@@ -14,15 +14,16 @@ namespace ExampleSeleniumTests
         protected IWebDriver driver;
 
         [SetUp]
-        public void Setup()
+        protected void Setup()
         {
             driver = DriverFactory.ReturnDriver(EDriverType.Chrome);
+            driver.Manage().Cookies.DeleteAllCookies();
             driver.Navigate().GoToUrl(TestSettings.SauceDemoURL);
             driver.Manage().Window.Maximize();
         }
 
         [TearDown]
-        public void TearDown()
+        protected void TearDown()
         {
             driver.Quit();
         }
