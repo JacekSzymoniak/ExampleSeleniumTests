@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ExampleSeleniumTests.PageObjects
 {
-    class LoginPage
+    class LoginPage : Page
     {
-        private IWebDriver Driver;
         public LoginPage(IWebDriver driver)
         {
             Driver = driver;
@@ -29,10 +28,10 @@ namespace ExampleSeleniumTests.PageObjects
             Driver.FindElement(passwordInput).SendKeys(password);
             return this;
         }
-        public LoginPage ClickLoginButton()
+        public HomePage ClickLoginButton()
         {
             Driver.FindElement(loginButton).Click();
-            return this;
+            return new HomePage(Driver);
         }
     }
 }

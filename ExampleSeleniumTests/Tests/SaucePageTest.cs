@@ -13,6 +13,8 @@ namespace ExampleSeleniumTests.Tests
     class SaucePageTest : TestBase
     {
         private LoginPage loginPage;
+        private HomePage homePage;
+
         [Test]
         public void TestPossibilityLoginToPage()
         {
@@ -28,6 +30,20 @@ namespace ExampleSeleniumTests.Tests
 
             Assert.AreEqual(entryUrl, driver.Url, "The expected result is not equal to the actual result");
         }
+        [Test]
+        public void TestFooterTwitterButton()
+        {
+            string login = "standard_user";
+            string password = "secret_sauce";
+            Uri entryUrl = new Uri("https://twitter.com/saucelabs");
 
+            loginPage = new LoginPage(driver);
+
+            loginPage.InsertLogin(login)
+                .InsertPassword(password)
+                .ClickLoginButton()
+                .ClickTwitterButton();
+
+        }
     }
 }
